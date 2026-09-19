@@ -112,7 +112,7 @@
           </div>
           <h3>{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
-          <a class="feature-link" @click="handleNotImplemented">
+          <a class="feature-link" @click="showNotImplemented">
             了解更多 <el-icon><Right /></el-icon>
           </a>
         </div>
@@ -185,7 +185,7 @@
           <div class="news-content">
             <div class="news-meta">
               <span class="news-category">{{ news.category }}</span>
-              <span class="news-date">{{ formatDate(news.publishTime) }}</span>
+              <span class="news-date">{{ formatListDate(news.publishTime) }}</span>
             </div>
             <h3>{{ news.title }}</h3>
             <p>{{ news.summary }}</p>
@@ -213,14 +213,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { formatListDate } from '@/utils/date'
+import { showNotImplemented } from '@/utils/message'
 import type { NewsItem, ProductItem } from '@/types'
 
 const router = useRouter()
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 
 const features = ref([
   {
@@ -324,14 +321,6 @@ const statsData = ref([
   { value: '98%', label: '客户满意度' },
   { value: '50+', label: '专业团队' }
 ])
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
 </script>
 
 <style lang="scss" scoped>

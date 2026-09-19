@@ -45,7 +45,7 @@
           </div>
           <h3>在线客服</h3>
           <p>即时响应</p>
-          <a class="card-link" @click="handleNotImplemented">立即咨询</a>
+          <a class="card-link" @click="showNotImplemented">立即咨询</a>
         </div>
       </div>
     </section>
@@ -184,6 +184,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
+import { showNotImplemented } from '@/utils/message'
 import type { ContactForm } from '@/types'
 
 const formRef = ref<FormInstance>()
@@ -253,10 +254,6 @@ const handleSubmit = async () => {
       }
     }
   })
-}
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
 }
 </script>
 

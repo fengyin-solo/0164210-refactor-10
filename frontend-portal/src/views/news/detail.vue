@@ -7,7 +7,7 @@
         <h1>{{ newsDetail.title }}</h1>
         <div class="article-meta">
           <span><el-icon><User /></el-icon> {{ newsDetail.author }}</span>
-          <span><el-icon><Calendar /></el-icon> {{ formatDate(newsDetail.publishTime) }}</span>
+          <span><el-icon><Calendar /></el-icon> {{ formatDetailDate(newsDetail.publishTime) }}</span>
           <span><el-icon><View /></el-icon> {{ newsDetail.viewCount }} 阅读</span>
         </div>
       </div>
@@ -64,8 +64,8 @@
             </div>
             <div class="article-share">
               <span>分享：</span>
-              <a @click="handleNotImplemented"><el-icon :size="18"><Share /></el-icon></a>
-              <a @click="handleNotImplemented"><el-icon :size="18"><ChatDotRound /></el-icon></a>
+              <a @click="showNotImplemented"><el-icon :size="18"><Share /></el-icon></a>
+              <a @click="showNotImplemented"><el-icon :size="18"><ChatDotRound /></el-icon></a>
             </div>
           </footer>
         </article>
@@ -84,7 +84,7 @@
                 <img :src="item.coverImage" :alt="item.title" />
                 <div class="related-info">
                   <h4>{{ item.title }}</h4>
-                  <span>{{ formatDate(item.publishTime) }}</span>
+                  <span>{{ formatDetailDate(item.publishTime) }}</span>
                 </div>
               </div>
             </div>
@@ -98,15 +98,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { formatDetailDate } from '@/utils/date'
+import { showNotImplemented } from '@/utils/message'
 import type { NewsItem } from '@/types'
 
 const router = useRouter()
 const route = useRoute()
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 
 const newsDetail = ref<NewsItem>({
   id: 1,
@@ -163,14 +160,6 @@ const relatedNews = ref<NewsItem[]>([
     updateTime: '2024-03-01'
   }
 ])
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
 
 onMounted(() => {
   console.log('News ID:', route.params.id)

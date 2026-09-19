@@ -123,8 +123,8 @@
             <p>{{ member.description }}</p>
           </div>
           <div class="team-social">
-            <a @click="handleNotImplemented"><el-icon><Link /></el-icon></a>
-            <a @click="handleNotImplemented"><el-icon><Message /></el-icon></a>
+            <a @click="showNotImplemented"><el-icon><Link /></el-icon></a>
+            <a @click="showNotImplemented"><el-icon><Message /></el-icon></a>
           </div>
         </div>
       </div>
@@ -157,11 +157,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ElMessage } from 'element-plus'
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
+import { showNotImplemented } from '@/utils/message'
 
 const timeline = ref([
   { year: '2018', title: '公司成立', description: '怀揣梦想，在北京正式成立，开启创业之旅' },

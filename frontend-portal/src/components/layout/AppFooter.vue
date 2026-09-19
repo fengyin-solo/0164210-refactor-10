@@ -34,13 +34,13 @@
             专注于企业数字化转型，提供全方位的技术解决方案，助力企业实现智能化升级。
           </p>
           <div class="social-links">
-            <a href="#" class="social-link" aria-label="微信" @click.prevent="handleNotImplemented">
+            <a href="#" class="social-link" aria-label="微信" @click.prevent="showNotImplemented">
               <el-icon :size="20"><ChatDotRound /></el-icon>
             </a>
-            <a href="#" class="social-link" aria-label="微博" @click.prevent="handleNotImplemented">
+            <a href="#" class="social-link" aria-label="微博" @click.prevent="showNotImplemented">
               <el-icon :size="20"><Share /></el-icon>
             </a>
-            <a href="#" class="social-link" aria-label="GitHub" @click.prevent="handleNotImplemented">
+            <a href="#" class="social-link" aria-label="GitHub" @click.prevent="showNotImplemented">
               <el-icon :size="20"><Link /></el-icon>
             </a>
           </div>
@@ -77,9 +77,9 @@
       <div class="footer-bottom">
         <p>© {{ currentYear }} Portal. All rights reserved.</p>
         <div class="footer-legal">
-          <a href="#" @click.prevent="handleNotImplemented">隐私政策</a>
-          <a href="#" @click.prevent="handleNotImplemented">服务条款</a>
-          <a href="#" @click.prevent="handleNotImplemented">京ICP备xxxxxxxx号</a>
+          <a href="#" @click.prevent="showNotImplemented">隐私政策</a>
+          <a href="#" @click.prevent="showNotImplemented">服务条款</a>
+          <a href="#" @click.prevent="showNotImplemented">京ICP备xxxxxxxx号</a>
         </div>
       </div>
     </div>
@@ -89,14 +89,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { showNotImplemented } from '@/utils/message'
 
 const router = useRouter()
 const currentYear = computed(() => new Date().getFullYear())
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 </script>
 
 <style lang="scss" scoped>

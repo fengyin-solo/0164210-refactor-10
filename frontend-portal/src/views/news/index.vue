@@ -51,7 +51,7 @@
             <div class="featured-meta">
               <span>{{ featuredNews.author }}</span>
               <span>·</span>
-              <span>{{ formatDate(featuredNews.publishTime) }}</span>
+              <span>{{ formatListDate(featuredNews.publishTime) }}</span>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="news-content">
               <div class="news-meta">
                 <span class="news-category">{{ news.category }}</span>
-                <span class="news-date">{{ formatDate(news.publishTime) }}</span>
+                <span class="news-date">{{ formatListDate(news.publishTime) }}</span>
               </div>
               <h3>{{ news.title }}</h3>
               <p>{{ news.summary }}</p>
@@ -93,7 +93,7 @@
 
         <!-- 加载更多 -->
         <div v-if="filteredNews.length > 0" class="load-more">
-          <el-button size="large" round @click="handleNotImplemented">加载更多</el-button>
+          <el-button size="large" round @click="showNotImplemented">加载更多</el-button>
         </div>
       </div>
     </section>
@@ -104,16 +104,13 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { formatListDate } from '@/utils/date'
+import { showNotImplemented } from '@/utils/message'
 import type { NewsItem } from '@/types'
 
 const router = useRouter()
 const activeCategory = ref('')
 const searchKeyword = ref('')
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 
 const categories = [
   { label: '全部', value: '' },
@@ -223,14 +220,6 @@ const filteredNews = computed(() => {
   
   return result
 })
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
 </script>
 
 <style lang="scss" scoped>
