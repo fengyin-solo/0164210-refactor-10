@@ -184,6 +184,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
+import { notifyNotImplemented as handleNotImplemented } from '@/utils/feedback'
 import type { ContactForm } from '@/types'
 
 const formRef = ref<FormInstance>()
@@ -253,10 +254,6 @@ const handleSubmit = async () => {
       }
     }
   })
-}
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
 }
 </script>
 

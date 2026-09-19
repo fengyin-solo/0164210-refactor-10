@@ -98,15 +98,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { formatDate as formatDateBase } from '@/utils/date'
+import { notifyNotImplemented as handleNotImplemented } from '@/utils/feedback'
 import type { NewsItem } from '@/types'
 
 const router = useRouter()
 const route = useRoute()
 
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
+// 正文页日期口径
+const formatDate = (dateStr: string) => formatDateBase(dateStr, 'long')
 
 const newsDetail = ref<NewsItem>({
   id: 1,
@@ -163,14 +163,6 @@ const relatedNews = ref<NewsItem[]>([
     updateTime: '2024-03-01'
   }
 ])
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
 
 onMounted(() => {
   console.log('News ID:', route.params.id)

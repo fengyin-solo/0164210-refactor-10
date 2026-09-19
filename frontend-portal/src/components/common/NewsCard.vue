@@ -19,7 +19,7 @@
       <h3 class="news-card__title">{{ news.title }}</h3>
       <p class="news-card__summary">{{ news.summary }}</p>
       <div class="news-card__meta">
-        <span><el-icon><Calendar /></el-icon> {{ formatDate(news.publishTime) }}</span>
+        <span><el-icon><Calendar /></el-icon> {{ formatDate(news.publishTime, 'numeric') }}</span>
         <span><el-icon><View /></el-icon> {{ news.viewCount }}</span>
       </div>
     </div>
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { formatDate } from '@/utils/date'
 import type { NewsItem } from '@/types'
 
 const props = defineProps<{
@@ -38,15 +39,6 @@ const router = useRouter()
 
 const handleClick = () => {
   router.push(`/news/${props.news.id}`)
-}
-
-const formatDate = (dateStr: string) => {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  })
 }
 </script>
 

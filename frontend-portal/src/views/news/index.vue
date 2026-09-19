@@ -104,16 +104,13 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { formatDate } from '@/utils/date'
+import { notifyNotImplemented as handleNotImplemented } from '@/utils/feedback'
 import type { NewsItem } from '@/types'
 
 const router = useRouter()
 const activeCategory = ref('')
 const searchKeyword = ref('')
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 
 const categories = [
   { label: '全部', value: '' },
@@ -223,14 +220,6 @@ const filteredNews = computed(() => {
   
   return result
 })
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
 </script>
 
 <style lang="scss" scoped>

@@ -89,14 +89,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { notifyNotImplemented as handleNotImplemented } from '@/utils/feedback'
 
 const router = useRouter()
 const currentYear = computed(() => new Date().getFullYear())
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 </script>
 
 <style lang="scss" scoped>

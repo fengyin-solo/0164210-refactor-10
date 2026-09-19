@@ -213,14 +213,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { formatDate } from '@/utils/date'
+import { notifyNotImplemented as handleNotImplemented } from '@/utils/feedback'
 import type { NewsItem, ProductItem } from '@/types'
 
 const router = useRouter()
-
-const handleNotImplemented = () => {
-  ElMessage.info('功能开发中，敬请期待')
-}
 
 const features = ref([
   {
@@ -324,14 +321,6 @@ const statsData = ref([
   { value: '98%', label: '客户满意度' },
   { value: '50+', label: '专业团队' }
 ])
-
-const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
 </script>
 
 <style lang="scss" scoped>
